@@ -12,6 +12,7 @@ class TaskTile extends StatelessWidget {
   Widget build(BuildContext context) {
     // See also CheckboxListTile class
     return ListTile(
+      contentPadding: EdgeInsets.only(left: 30, right: 60),
       title: Text(
         taskTitle,
         style: TextStyle(
