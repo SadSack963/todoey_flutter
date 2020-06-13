@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/tasks_list.dart';
 import '../screens/add_task_screen.dart';
-import '../models/tasklist.dart';
+import '../models/task_data.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,15 +25,7 @@ class _TasksScreenState extends State<TasksScreen> {
             // Use MediaQuery to determine spacing at the bottom
             builder: (context) => SingleChildScrollView(
               padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: AddTaskScreen((newTaskTitle) {
-                setState(() {
-                  // Add new task to list
-//                  tasks.add(Task(name: newTaskTitle));
-                  Provider.of<TaskList>(context, listen: false).addNewTask(taskTitle: newTaskTitle);
-                });
-                // Dismiss the BottomSheet
-                Navigator.pop(context);
-              }),
+              child: AddTaskScreen(),
             ),
 
             // Transparency allows the background grey to show through,
@@ -85,8 +72,8 @@ class _TasksScreenState extends State<TasksScreen> {
                     ),
                   ),
                   Text(
-                    Provider.of<TaskList>(context).tasks.length.toString() +
-                        ((Provider.of<TaskList>(context).tasks.length == 1) ? ' task' : ' tasks'),
+                    Provider.of<TaskData>(context).taskCount.toString() +
+                        ((Provider.of<TaskData>(context).taskCount == 1) ? ' task' : ' tasks'),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,
