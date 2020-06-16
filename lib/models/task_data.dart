@@ -30,8 +30,8 @@ class TaskData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteTask(String taskTitle) {
-    _tasks.removeWhere((_tasks) => (_tasks.name == taskTitle));
+  void deleteTask(Task task) {
+    _tasks.remove(task);
     notifyListeners();
   }
 }
